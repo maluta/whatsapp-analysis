@@ -206,9 +206,9 @@ def main():
 
     col1, col2 = st.columns(2)
     with col1:
-        plot_button = st.button("Generate Plot", use_container_width=True)
+        plot_button = st.button("📊 Generate Plot", use_container_width=True, disabled=not uploaded_file)
     with col2:
-        ai_button = st.button("Generate AI Response", use_container_width=True)
+        ai_button = st.button("🤖 Generate AI Response", use_container_width=True, disabled=not uploaded_file)
 
 
     if plot_button:
