@@ -1,0 +1,54 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+env/
+venv/
+
+# Streamlit-specific files
+.streamlit/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and debug files
+*.log
+*.sqlite3
+
+# Jupyter Notebook checkpoints (if used)
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# Environment variables and secrets
+.env
+*.env
+secrets.toml
+
+# Package-specific
+*.egg-info/
+dist/
+build/
+
+# Data and temporary files
+*.csv
+*.json
+*.xls
+*.xlsx
+*.db
+*.zip
+*.tar
+*.gz
+*.h5
+*.pickle
+*.parquet
+*.pkl
+
+# Ignore user uploads or temporary media files
+uploads/
+temp/
+media/
