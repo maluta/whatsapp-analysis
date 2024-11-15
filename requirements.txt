@@ -1,0 +1,5 @@
+matplotlib==3.9.2
+protobuf==5.28.3
+PyYAML==6.0.2
+streamlit==1.39.0
+google-generativeai==0.8.3
