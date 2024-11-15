@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import yaml
 import google.generativeai as genai
+from google.api_core import retry
+
 
 def load_config():
     config_file = "config.yaml"
@@ -133,15 +135,21 @@ def parse_line(line):
             pass
     return None
 
+retry_policy = {
+    "retry": retry.Retry(predicate=retry.if_transient_error, initial=10, multiplier=1.5, timeout=300)
+}
+
 def generate_ai_response(model_version, prompt, text):
     print(model_version)
     try:
-        model = genai.GenerativeModel(model_version)
+        model = genai.GenerativeModel(
+                model_version,
+                generation_config=genai.types.GenerationConfig(temperature=0.7))
         ai_prompt = prompt + '\n\n"""\n' + text + '\n"""'
         st.write(model.count_tokens(ai_prompt))
         response = model.generate_content(
             ai_prompt,
-            generation_config=genai.types.GenerationConfig(temperature=0.7)
+            request_options=retry_policy
         )
         return response
     except Exception as e:
