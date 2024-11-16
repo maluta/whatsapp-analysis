@@ -206,9 +206,9 @@ def main():
 
     col1, col2 = st.columns(2)
     with col1:
-        plot_button = st.button("📊 Generate Plot", use_container_width=True, disabled=not uploaded_file)
+        plot_button = st.button("Generate Plot", icon=":material/bar_chart:", use_container_width=True, disabled=not uploaded_file)
     with col2:
-        ai_button = st.button("🤖 Generate AI Response", use_container_width=True, disabled=not uploaded_file)
+        ai_button = st.button("Generate AI Response", icon=":material/electric_bolt:", use_container_width=True, type="primary", disabled=not uploaded_file)
 
 
     if plot_button:
