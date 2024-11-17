@@ -159,8 +159,8 @@ def generate_ai_response(model_version, prompt, text):
 def main():
     st.set_page_config(page_title="WhatsApp Chat Analyzer", layout="wide")
     
-    st.title("WhatsApp Chat Analyzer")
-    st.write("Upload a zip file containing WhatsApp chat exports and specify the date range for analysis.")
+    st.title(":material/chat: WhatsApp Chat Analyzer")
+    st.write(":material/folder_zip: Upload a zip file containing WhatsApp chat exports and specify the date range for analysis.")
 
     config = load_config()
     if config is None:
@@ -189,14 +189,14 @@ def main():
             end_date = end_date.strftime('%d/%m/%y')
 
     with col2:
-        st.subheader("AI Configuration")
+        st.subheader(":material/style: LLM Configuration")
         models = genai.list_models()
         model_names = [model.name for model in models]
         default_model_index = model_names.index(config.get('MODEL_VERSION', model_names[0])) if config.get('MODEL_VERSION', model_names[0]) in model_names else 0
         
-        model_version = st.selectbox("AI Model Version", model_names, index=default_model_index)
+        model_version = st.selectbox("Select Gemini Model option", model_names, index=default_model_index)
 
-    st.subheader("AI Prompt")
+    st.subheader(":material/prompt_suggestion: LLM Prompt")
     default_prompt = config.get('DEFAULT_PROMPT', '')
     prompt = st.text_area("Enter your prompt here:", value=default_prompt, height=150,
                           help="Customize the prompt for the AI analysis. Use placeholders like {start_date} and {end_date} if needed.")
@@ -206,11 +206,17 @@ def main():
 
     col1, col2 = st.columns(2)
     with col1:
-        plot_button = st.button("Generate Plot", icon=":material/bar_chart:", use_container_width=True, disabled=not uploaded_file)
+        plot_button = st.button("Generate Plot", 
+                                icon=":material/bar_chart:", 
+                                use_container_width=True, 
+                                disabled=not uploaded_file)
     with col2:
-        ai_button = st.button("Generate AI Response", icon=":material/electric_bolt:", use_container_width=True, type="primary", disabled=not uploaded_file)
-
-
+        ai_button = st.button("Generate AI Response", 
+                                icon=":material/electric_bolt:", 
+                                use_container_width=True, 
+                                type="primary",
+                                key="ai_button",
+                                disabled=not uploaded_file)
     if plot_button:
         if uploaded_file and start_date and end_date:
             content = extract_txt_from_zip(uploaded_file, start_date, end_date)
