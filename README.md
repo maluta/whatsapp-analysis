@@ -2,6 +2,8 @@
 
 Uma ferramenta interativa para análise de conversas do WhatsApp, construída com Streamlit. Visualize padrões de mensagens e obtenha insights sobre suas conversas.
 
+![como funciona](https://github.com/maluta/maluta.github.com/blob/master/images/whatsapp-history-ai_output.gif?raw=true)
+
 ## 🌟 Funcionalidades
 
 - 🤖 Análise de conversas usando IA generaiva (via Google Gemini API) ★
